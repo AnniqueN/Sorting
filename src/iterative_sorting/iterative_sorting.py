@@ -2,48 +2,30 @@
 def selection_sort(arr):
     # loop through n-1 elements
     for i in range(0, len(arr) - 1):
-        cur_index = i
-        smallest_index = cur_index
-        # TO-DO: find next smallest element
-        # (hint, can do in 3 loc)
-    for j in range(cur_index, len(arr) - 1):
-            # Update the smallest_index if the current value is smaller
-       if arr[j + 1] < arr[smallest_index]:
-                smallest_index = j + 1
-
-        # TO-DO: swap
-        # Temporarily hold the value of the array[cur_index] before overwriting it
-    temp = arr[cur_index]
-        # Sets the cur_index's value to the smallest_index's value
-    arr[cur_index] = arr[smallest_index]
-        # Complete the final swap by assigning the smallest_index's value to the cur_index's value
-    arr[smallest_index] = temp
+        # Find min of unsorted subarray
+        current_min = min(arr[i:])
+        # Do the swap
+        min_index = arr.index(current_min)
+        temp = arr[i]
+        arr[i] = current_min
+        arr[min_index] = temp
+        # print(arrr)
     return arr
 
-
+# selection_sort([1, 5, 8, 4, 2, 9, 6, 0, 3, 7])
 # TO-DO:  implement the Bubble Sort function below
 def bubble_sort( arr ):
-    # The sort will keep running until no more swaps are made
-    while True:
-        # The initialization of the ending condition
-        swap = 0
-
-        # Goes through the array and swaps if the value on the RHS is smaller than the current value
-        for i in range(0, len(arr) - 1):
-            if arr[i] > arr[i+1]:
-                temp = arr[i]
-                arr[i] = arr[i+1]
-                arr[i+1] = temp
-                # Increases swap count
-                swap += 1
-
-        # Breaks when the for loop can make a clean pass
-        if swap == 0:
-            break
-
+    for i in range(0, len(arr) - 1):
+        # swaps = 0
+        for j in range(1, len(arr) - i):
+            if arr[j] < arr[j - 1]:
+                # swap:
+                temp = arr[j]
+                arr[j] = arr[j-1]
+                arr[j-1] = temp
+                # swaps +=1
     return arr
-
-
+# print(bubble_sort([1, 5, 8, 4, 2, 9, 6, 0, 3, 7]))
 # STRETCH: implement the Count Sort function below
 def count_sort( arr, maximum=-1 ):
 
